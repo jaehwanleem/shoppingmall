@@ -3,10 +3,13 @@ import {
     getAuth,
     signInWithRedirect,
     signInWithPopup,
-    GoogleAuthProvider
-}
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
 
-    from "firebase/auth"
+} from "firebase/auth"
+
+
+
 
 import {
     getFirestore,
@@ -28,20 +31,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseapp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+const googleprovider = new GoogleAuthProvider();
+googleprovider.setCustomParameters({
     prompt: "select_account"
 })
 
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
-//안되면 괄호 없애준다 
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleprovider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleprovider);
 
 
 export const db = getFirestore(); //데이터베이스 db로 부르기로 약속 
 
 export const createUserDocumentFromAuth = async (userAuth) => {
+
+    if (!userAuth) return;
+
+
     const userDocRef = doc(db, 'users', userAuth.uid);
 
     console.log(userDocRef);
@@ -70,4 +77,11 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     }
     //if userdata exists
 
+}
+
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+
+    return await createUserDocumentFromAuth(auth, email, password) //리턴값으로 반환해줘야한다 "await" 사용하는거 꼭 알아야한다 
 }
