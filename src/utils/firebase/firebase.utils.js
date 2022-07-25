@@ -44,7 +44,10 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlepro
 
 export const db = getFirestore(); //데이터베이스 db로 부르기로 약속 
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+    userAuth,
+    additionalInformation = {}
+) => {
 
     if (!userAuth) return;
 
@@ -68,7 +71,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
             await setDoc(userDocRef, {
                 displayName,
                 email,
-                createdAt
+                createdAt,
+                ...additionalInformation
             })
 
         } catch (error) {
@@ -83,5 +87,5 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
 
-    return await createUserDocumentFromAuth(auth, email, password) //리턴값으로 반환해줘야한다 "await" 사용하는거 꼭 알아야한다 
-}
+    return await createUserWithEmailAndPassword(auth, email, password); //리턴값으로 반환해줘야한다 "await" 사용하는거 꼭 알아야한다 
+};
