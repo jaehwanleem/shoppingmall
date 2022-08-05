@@ -1,6 +1,6 @@
 import Directory from '../../components/directory/directory.component';
 
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom'; //아웃렛 으로 자식 path 내용 제대로 출력되게 만든다 
 
 
 const Home = () => {
@@ -41,6 +41,8 @@ const Home = () => {
         <Outlet/>
         <Directory categories={categories} />
         </div>
+
+        //outlet 가 위에 오면 위에 디스플레이 되고 아울렛이 아래에 오면 home 뒤에 아래에 디스플레이된다 
     
   );
 }

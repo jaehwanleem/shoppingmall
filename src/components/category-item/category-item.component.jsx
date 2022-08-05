@@ -1,9 +1,12 @@
+// 카테고리 카드 내부 내용 
+
 import  './category-item.styles.scss'
 
 
 const CategoryItem = ({category}) => {
 
     const {imageUrl, title, id } = category;
+    
 return (
     <div key={id} className="category-container">
     <div

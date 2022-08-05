@@ -5,6 +5,7 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
 
 } from "firebase/auth"
 
@@ -88,4 +89,10 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
 
     return await createUserWithEmailAndPassword(auth, email, password); //리턴값으로 반환해줘야한다 "await" 사용하는거 꼭 알아야한다 
+};
+
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+
+    return await signInWithEmailAndPassword(auth, email, password); //리턴값으로 반환해줘야한다 "await" 사용하는거 꼭 알아야한다 
 };

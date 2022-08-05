@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'; //리액트 라우터로 도메인 path ex) /shop 이런걸 구현하는데 필요한것 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
