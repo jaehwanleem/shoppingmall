@@ -5,9 +5,9 @@ import Navigation from './routes/navigation/navigation.componet';
 import Authentication from './routes/authentication/authentication.component'
 
 
-const Shop = () => {
-  return (<h1> hello</h1>)
-}
+import Shop from './routes/shop/shop.component';
+
+
 
 const App = () => {
   // 하드코딩 대신 카테고리를 놔둬서 코드를 작게 냅둔다

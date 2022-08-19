@@ -3,6 +3,12 @@ import { Fragment, useContext} from "react"
 import { ReactComponent as CrwnLogo} from "../../assets/crown.svg"
 import './navigation.styles.scss'
 import { UserContext } from "../../contexts/user.contexts"
+import { CartContext } from "../../contexts/cart.contexts"
+
+
+import CartIcon from "../../components/cart-icon/cart-icon.component"
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component"
+
 
 
 import { signOutUser } from "../../utils/firebase/firebase.utils"
@@ -21,6 +27,8 @@ const Navigation = () => {
     //     setCurrentUser(null);
     // }
 
+    const {isCartOpen} =useContext(CartContext);
+
 
     return (    
       <Fragment>
@@ -36,14 +44,22 @@ const Navigation = () => {
 
             { 
                 currentUser ? (  //지금 유저가 로그인되있으면 sign out 으로 표기 한다 
-                    <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>)
+                    <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>
+                    )
+                    
                     : (<Link className="nav-link" to="/auth"> 
                     SIGN IN
-                </Link>)
-                
+                      </Link>)
             }
             
+            
+            <CartIcon/> 
+            
           </div>
+           {isCartOpen && <CartDropdown/>}
+          
+
+          
         </div>
         <Outlet />
       </Fragment>
