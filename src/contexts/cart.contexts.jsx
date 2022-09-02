@@ -43,7 +43,7 @@ export const CartProvider = ({children}) => {
     const [cartItems,setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
 
-    useEffect(() => {  //cartItems 가 바뀔때마다 다시 숫자를 세어줘야하기 때문에 useEffect 함수를 이용하여 알아낸다 
+    useEffect(() => {  //cartItems 가 바뀔때마다 다시 숫자를 세어줘야하기 때문에 useEffect 함수를 이용하여 알아낸다, 장바구니에서 담을때마다 숫자가 변해야 하기때문에 useEffect 사용함
 
         const newCartCount = cartItems.reduce((total, cartItem) => total + cartItem.quantity //(callback, currentvalues) 이런 구조로 reduce 함수에 들어간다
 
